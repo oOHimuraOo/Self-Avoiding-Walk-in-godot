@@ -13,7 +13,7 @@ var tamanhoTela:Vector2
 var linha:Line2D
 
 func _ready() -> void:
-	tamanhoTela = Vector2(400,400)#get_viewport().size
+	tamanhoTela = Vector2(350,350)#get_viewport().size
 	colunas = round(tamanhoTela.x / espaco) 
 	linhas = round(tamanhoTela.y / espaco)
 	grid = criar_array_bidimensional(colunas, linhas)
@@ -27,16 +27,17 @@ func _ready() -> void:
 	linha = Line2D.new()
 	linha.width = 0.5
 	add_child(linha)
+	camera_2d.zoom = Vector2(50,50)
 
 func _process(_delta) -> void:
 	desenhar()
 
 func _input(_event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_DOWN):
-		camera_2d.zoom += Vector2(0.1,0.1)
+		camera_2d.zoom += Vector2(10,10)
 		print(camera_2d.zoom)
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_UP):
-		camera_2d.zoom -= Vector2(0.1,0.1)
+		camera_2d.zoom -= Vector2(10,10)
 		if camera_2d.zoom < Vector2(0.2,0.2):
 			camera_2d.zoom = Vector2(0.1,0.1)
 	elif Input.is_action_just_pressed("ui_down"):
